@@ -1,13 +1,11 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
-import { AuthProvider } from "@/lib/auth";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import NavBar from "@/components/NavBar";
 import { Toaster } from "@/components/ui/toaster";
+import Providers from "@/components/Providers";
 
 const inter = Inter({ subsets: ["latin"] });
-const queryClient = new QueryClient();
 
 export const metadata: Metadata = {
   title: "Galeria de Imagens",
@@ -22,15 +20,13 @@ export default function RootLayout({
   return (
     <html lang="pt-br">
       <body className={inter.className}>
-        <QueryClientProvider client={queryClient}>
-          <AuthProvider>
-            <NavBar />
-            <main className="container mx-auto p-4 md:p-8">
-              {children}
-            </main>
-            <Toaster />
-          </AuthProvider>
-        </QueryClientProvider>
+        <Providers>
+          <NavBar />
+          <main className="container mx-auto p-4 md:p-8">
+            {children}
+          </main>
+          <Toaster />
+        </Providers>
       </body>
     </html>
   );
