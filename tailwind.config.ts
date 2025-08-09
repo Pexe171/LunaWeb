@@ -8,19 +8,15 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        'background-light': '#f5f5f5',
-        'text-light': '#333333',
-        'primary-light': '#1e40af',
-        'secondary-light': '#60a5fa',
-        'background-dark': '#1a1a1a',
-        'text-dark': '#e0e0e0',
-        'primary-dark': '#3b82f6',
-        'secondary-dark': '#d1d5db',
+        background: 'var(--background)',
+        foreground: 'var(--foreground)',
+        accent: 'var(--accent)',
+        'accent-secondary': 'var(--accent-secondary)',
       },
       fontFamily: {
         sans: ['Inter', 'sans-serif'],
       },
     },
   },
-  plugins: [], // Remova o plugin aqui
+  plugins: [],
 };
