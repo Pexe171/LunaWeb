@@ -1,6 +1,7 @@
 import ImageCard from "./ImageCard";
 import { Image } from "@/types";
 import { Pencil } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
 
 interface GalleryGridProps {
   images: Image[];
@@ -21,10 +22,24 @@ export default function GalleryGrid({ images }: GalleryGridProps) {
   }
 
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-      {images.map((image) => (
-        <ImageCard key={image._id} image={image} />
-      ))}
-    </div>
+    <motion.div
+      layout
+      className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4"
+    >
+      <AnimatePresence>
+        {images.map((image) => (
+          <motion.div
+            key={image._id}
+            layout
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: 20 }}
+            transition={{ duration: 0.3 }}
+          >
+            <ImageCard image={image} />
+          </motion.div>
+        ))}
+      </AnimatePresence>
+    </motion.div>
   );
 }
